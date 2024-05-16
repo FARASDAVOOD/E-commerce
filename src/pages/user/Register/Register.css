@@ -1,0 +1,34 @@
+div{
+    margin: 0px;
+    padding: 0px !important;
+    color: black;
+ }
+ 
+ .Container{
+     display: flex;
+     flex-wrap: wrap;
+ 
+ }
+ .box{
+     flex: 1;
+     
+ }
+ 
+ 
+ 
+ @media screen and (max-width:495px){
+     .Container{
+         flex-direction: row ;
+     }
+    .box{
+     flex:none;
+     width: 100% ;
+     
+    }
+ }
+ .navLink {
+     color: black;
+   }
+   .navLink:active {
+     color: rgb(254, 104, 104) !important;
+   }
