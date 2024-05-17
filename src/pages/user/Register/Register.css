@@ -30,5 +30,10 @@ div{
      color: black;
    }
    .navLink:active {
-     color: rgb(254, 104, 104) !important;
+     color: #ea8f5a !important;
    }
+  
+   button:active {
+    background-color: #ea8f5a;
+    transform: scale(0.95);
+  }

@@ -1,0 +1,27 @@
+
+#link:hover{
+color:#f58773 !important;
+}
+#link{
+  color: #3e1f55 !important;
+}
+
+
+
+@media screen and (max-width:992px){
+    .navbar {
+        background-color: white !important; /* Use !important to override Bootstrap's default styles */
+      }
+
+      
+
+
+
+}
+.icon1:active,.icon2:active{
+ 
+  transform: scale(0.75);
+}
+
+
+
