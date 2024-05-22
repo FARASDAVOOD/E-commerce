@@ -12,13 +12,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ContextApi>
+  // <ContextApi>
  
   
     <App />
    
  
-  </ContextApi>
+//  </ContextApi> 
 );
 
 // If you want to start measuring performance in your app, pass a function

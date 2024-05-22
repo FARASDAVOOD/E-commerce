@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 
-import "./CardProduct.css";
+
 import { mainContext } from '../../pages/context/ContextApi';
 
-const CardProduct = () => {
+const CardProductHome = () => {
   const [registerValue, setRegisterValue, Users, setUsers, cart, setCart] = useContext(mainContext);
 
   const handleCart = (id) => {
@@ -11,12 +11,12 @@ const CardProduct = () => {
     setCart((prevCart) => {
       const existingProduct = prevCart.find((item) => item.id === id);
       if (existingProduct) {
-        // If the product is already in the cart, increase its quantity
+       
         return prevCart.map((item) =>
           item.id === id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
-        // If the product is not in the cart, add it with quantity 1
+        
         return [...prevCart, { ...findProduct, quantity: 1 }];
       }
     });
@@ -27,7 +27,7 @@ const CardProduct = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
+        {products.slice(0,6).map((product) => (
           <div key={product.id} className="relative flex flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <a className="relative mx-3 mt-3 flex h-60 items-center justify-center overflow-hidden rounded-xl" href="#">
               <img className="object-contain h-full" src={product.image} alt="product image" />
@@ -86,4 +86,4 @@ const CardProduct = () => {
   );
 };
 
-export default CardProduct;
+export default CardProductHome;

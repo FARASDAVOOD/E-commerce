@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Navbar1 from "../navbar/Navbar1";
 import Footer from "../Footer/Footer";
 import CardProduct from "../Cardproduct/CardProduct";
+import CardProductHome from "../CardproductHome/CardProductHome";
 
 
 
@@ -36,7 +37,7 @@ function Home() {
           ))}
         </Carousel>
       </div>
-      <CardProduct/>
+      <CardProductHome/>
       <Footer/>
     </div>
   );

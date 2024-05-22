@@ -10,21 +10,25 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "emailjs-com": "^3.2.0",
+    "json-server": "^1.0.0-beta.0",
     "mdb-react-ui-kit": "^8.0.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve-json": "json-server --watch db.json"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +50,10 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.3"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "postcss.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

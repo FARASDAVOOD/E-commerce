@@ -1,33 +1,24 @@
 import React, { useContext } from 'react';
 
-import "./CardProduct.css";
+
 import { mainContext } from '../../pages/context/ContextApi';
+import Navbar1 from '../navbar/Navbar1';
 
-const CardProduct = () => {
-  const [registerValue, setRegisterValue, Users, setUsers, cart, setCart] = useContext(mainContext);
-
-  const handleCart = (id) => {
-    const findProduct = products.find((value) => value.id === id);
-    setCart((prevCart) => {
-      const existingProduct = prevCart.find((item) => item.id === id);
-      if (existingProduct) {
-        // If the product is already in the cart, increase its quantity
-        return prevCart.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        // If the product is not in the cart, add it with quantity 1
-        return [...prevCart, { ...findProduct, quantity: 1 }];
-      }
-    });
-  };
-
-  console.log(cart, "its cart");
-
+const Search= () => {
+  const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue,search,setSearch,findData,setFindData]=useContext(mainContext);
+  const handleCart=(id)=>{
+    const findProduct = producs.find((value)=>value.id==id)
+    setCart([...cart,findProduct]);
+    
+  }
+  console.log(cart,"its cart");
   return (
-    <div className="container mx-auto p-4">
+    <>
+    <Navbar1/>
+    <div className="container mx-auto p-4 mt-5">
+        
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
+        {findData.map((product) => (
           <div key={product.id} className="relative flex flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <a className="relative mx-3 mt-3 flex h-60 items-center justify-center overflow-hidden rounded-xl" href="#">
               <img className="object-contain h-full" src={product.image} alt="product image" />
@@ -39,8 +30,8 @@ const CardProduct = () => {
               <h5 className="text-xl tracking-tight text-slate-900">{product.name}</h5>
               <div className="mt-2 mb-5 flex items-center justify-between">
                 <p>
-                  <span className="text-3xl font-bold text-slate-900">₹{product.price}</span>
-                  <span className="text-sm text-slate-900 line-through">699</span>
+                  <span className="text-3xl font-bold text-slate-900">${product.price}</span>
+                  <span className="text-sm text-slate-900 line-through">$699</span>
                 </p>
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) => (
@@ -59,7 +50,8 @@ const CardProduct = () => {
                 </div>
               </div>
               <button
-                onClick={() => handleCart(product.id)}
+              onClick={()=>handleCart(product.id)}
+               
                 className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
               >
                 <svg
@@ -82,8 +74,10 @@ const CardProduct = () => {
           </div>
         ))}
       </div>
+      
     </div>
+    </>
   );
 };
 
-export default CardProduct;
+export default Search;

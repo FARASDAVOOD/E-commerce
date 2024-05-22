@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { mainContext } from '../../pages/context/ContextApi';
 
 const Payment = () => {
     const navigate = useNavigate();
@@ -9,16 +10,20 @@ const Payment = () => {
     const [expiryMonth, setExpiryMonth] = useState('');
     const [expiryYear, setExpiryYear] = useState('');
 
+    const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue] = useContext(mainContext);
+
     const handlePay = () => {
-        if (cardHolder.trim() !== '' && cardNumber.length >= 14 && security.length >= 3) {
+       
+        if (cardHolder.trim() !== '' && cardNumber.length >= 14 && security.length === 3 && expiryMonth !== '' && expiryYear !== '') {
             navigate('/paymentsuccess');
+            setCart([])
         } else {
-            alert("Please enter the proper data");
+            alert("Please fill all fields properly.");
         }
     };
 
     const isFormValid = () => {
-        return cardHolder.trim() !== '' && cardNumber.length >= 14 && security.length >= 3 && expiryMonth && expiryYear;
+        return cardHolder.trim() !== '' && cardNumber.length >= 14 && security.length === 3 && expiryMonth !== '' && expiryYear !== '';
     };
 
     return (
@@ -28,13 +33,13 @@ const Payment = () => {
                     <div className="relative">
                         <img className="w-full h-auto" src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-front.png" alt="front credit card" />
                         <div className="front bg-transparent text-lg w-full text-white px-12 absolute left-0 bottom-12">
-                            <p className="number mb-5 sm:text-xl">{cardNumber !== '' ? cardNumber : '0000 0000 0000 0000'}</p>
+                            {/* <p className="number mb-5 sm:text-xl">{cardNumber !== '' ? cardNumber : '0000 0000 0000 0000'}</p> */}
                             <div className="flex flex-row justify-between">
-                                <p>{cardHolder !== '' ? cardHolder : 'Card holder'}</p>
+                                {/* <p>{cardHolder !== '' ? cardHolder : 'Card holder'}</p> */}
                                 <div className="">
-                                    <span>{expiryMonth !== '' ? expiryMonth : 'MM'}</span>
+                                    {/* <span>{expiryMonth !== '' ? expiryMonth : 'MM'}</span>
                                     <span>/</span>
-                                    <span>{expiryYear !== '' ? expiryYear : 'YY'}</span>
+                                    <span>{expiryYear !== '' ? expiryYear : 'YY'}</span> */}
                                 </div>
                             </div>
                         </div>
@@ -122,7 +127,7 @@ const Payment = () => {
                     <button 
                         onClick={handlePay}
                         className={`submit-button px-4 py-3 rounded-full bg-blue-300 text-blue-900 focus:ring focus:outline-none w-full text-xl font-semibold transition-colors ${!isFormValid() && 'cursor-not-allowed'}`}
-                        disabled={!isFormValid()}
+                        
                     >
                         Pay now
                     </button>

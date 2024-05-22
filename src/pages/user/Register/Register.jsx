@@ -1,28 +1,47 @@
-import React, { useCallback, useContext, useEffect, useInsertionEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useCallback, useContext, useEffect, useInsertionEffect, useLayoutEffect, useMemo, useState } from 'react';
 import Registerbg from "../../../assets/baby-register.jpeg"
 import "./Register.css"
-import { mainContext } from '../../context/ContextApi';
+// import { mainContext } from '../../context/ContextApi';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { memo } from 'react';
+import axios from 'axios';
 
 
 
 
 const Register = () => {
+
+
+
+
+
   const navigate=useNavigate();
 
-  const [registerValue, setRegisterValue, Users, setUsers] = useContext(mainContext);
+  // const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue,search,setSearch,findData,setFindData] = useContext(mainContext);
 
-
+  const [registerValue,setRegisterValue]=useState({
+    name:'',
+    email:'',
+    password:''
+  });
 
 
   function handleClick(e) {
 
+    
+
+
+
     e.preventDefault();
+
+
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    
     if (registerValue.email.match(mailformat)) {
-      if (registerValue.password.length > 8) {
-        Users.push(registerValue);
+      if (registerValue.password.length >= 7) {
+        axios.post("http://localhost:3000/user",registerValue);
+        alert("success")
+        // Users.push(registerValue);
         setRegisterValue({
           name: '',
           email: '',
@@ -37,7 +56,7 @@ const Register = () => {
     }
 
   }
-  console.log(Users);
+ 
 
 
   return (

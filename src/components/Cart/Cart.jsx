@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [registerValue, setRegisterValue, Users, setUsers, cart, setCart] = useContext(mainContext);
+  const [registerValue, setRegisterValue, Users, setUsers, cart, setCart, logValue, setLogValue, addToCart] = useContext(mainContext);
 
   const handleQuantityChange = (id, increment) => {
     setCart(prevCart =>
@@ -19,7 +19,7 @@ const Cart = () => {
   };
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const shipping = 20; // Assuming shipping cost is 20 $
+  const shipping = 20; 
   const total = subtotal + shipping;
 
   return (
@@ -58,7 +58,7 @@ const Cart = () => {
                       </span>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <p className="text-sm">{item.price.toLocaleString()} $</p>
+                      <p className="text-sm">{item.price.toLocaleString()} ₹</p>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -79,26 +79,26 @@ const Cart = () => {
             <div className="text-center text-gray-700">Your cart is empty</div>
           )}
         </div>
-        {/* Subtotal */}
-        <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+        
+        <div className="mt-6 h-full rounded-lg border p-5 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
           <div className="mb-2 flex justify-between">
             <p className="text-gray-700">Subtotal</p>
-            <p className="text-gray-700">{subtotal.toLocaleString()} $</p>
+            <p className="text-gray-700">{subtotal} ₹</p>
           </div>
           <div className="flex justify-between">
             <p className="text-gray-700">Shipping</p>
-            <p className="text-gray-700">{shipping.toLocaleString()} $</p>
+            <p className="text-gray-700">{shipping} ₹</p>
           </div>
           <hr className="my-4" />
           <div className="flex justify-between">
             <p className="text-lg font-bold">Total</p>
             <div>
-              <p className="mb-1 text-lg font-bold">{total.toLocaleString()} $</p>
-              <p className="text-sm text-gray-700">including VAT</p>
+              <p className="mb-1 text-lg font-bold">{total} ₹</p>
+              <p className="text-sm text-gray-700">including GST</p>
             </div>
           </div>
           <button
-            onClick={() => cart.length !== 0 && navigate('/payment')}
+            onClick={() => (cart.length !== 0 && logValue.email.trim() !== '' ) ? navigate('/payment') : navigate("/login") }
             className={`mt-6 w-full rounded-md py-1.5 font-medium text-blue-50 hover:bg-blue-600 ${cart.length === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500'}`}
             disabled={cart.length === 0}
           >
