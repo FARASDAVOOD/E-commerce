@@ -28,7 +28,7 @@ function Home() {
     <div>
       
       <Navbar1/>
-      <div >
+      <div className="mt-4">
         <Carousel data-bs-theme="dark">
           {carouselItems.map((item, index) => (
             <Carousel.Item key={index}>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./Navbar1.css";
 import HomeLogo from "../../assets/home_logo.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +10,16 @@ import { mainContext } from '../../pages/context/ContextApi';
 
 function Navbar1() {
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/product")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error('Error fetching products:', error));
+  }, []);
+
+
   const [
     registerValue,
     setRegisterValue,
@@ -24,6 +34,7 @@ function Navbar1() {
     findData,
     setFindData
   ] = useContext(mainContext);
+
 
   const handleFind = () => {
     if (search.trim() === "") {
@@ -48,21 +59,21 @@ function Navbar1() {
 
   return (
     <div style={{scrollBehavior:"smooth"}}>
-      <Navbar expand="lg" style={{ position: "fixed", top: "0px", width: "100%", zIndex: "2", border: 'none', boxShadow: "none",background:"white" }}>
+      <Navbar expand="lg" style={{ position: "fixed", top: "0px", width: "100%", zIndex: "2", border: 'none', boxShadow: "none",background:"#f5f5f5" }}>
         <Container fluid>
-          <Navbar.Brand href="#"><img src={HomeLogo} alt="Home Logo" /></Navbar.Brand>
+          <Navbar.Brand href="#"><img src={HomeLogo} alt="Home Logo" className='ml-2' /></Navbar.Brand>
           <Navbar.Toggle style={{ background: '#f58773', position: "absolute", right: "70px", top: "12px" }} aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
-              className="me-auto my-2  my-lg-0"
-              style={{ maxHeight: '100px' }}
+              className="me-auto flex justify-evenly  "
+              style={{ maxHeight: '100px',width:"600px" }}
               navbarScroll
             >
-              <Nav.Link className='mx-2' id="link" onClick={() => navigate('/')}>Home</Nav.Link>
-              <Nav.Link className='mx-2' id="link" onClick={() => navigate('/shop')}>Shop</Nav.Link>
-              <Nav.Link className='mx-2' id="link" onClick={() => navigate('/testimonial')}>Testimonial</Nav.Link>
-              <Nav.Link className='mx-2' id="link" onClick={() => navigate('/contact')}>Contact Us</Nav.Link>
-              {logValue.email && <Nav.Link className='mx-3' id="link" onClick={() => navigate('/')}>{logValue.email}</Nav.Link>}
+              <Nav.Link className='' id="link" onClick={() => navigate('/')}>Home</Nav.Link>
+              <Nav.Link className='' id="link" onClick={() => navigate('/shop')}>Shop</Nav.Link>
+              <Nav.Link className='' id="link" onClick={() => navigate('/testimonial')}>Testimonial</Nav.Link>
+              <Nav.Link className='' id="link" onClick={() => navigate('/contact')}>Contact Us</Nav.Link>
+              {logValue.email && <Nav.Link className='' id="link" onClick={() => navigate('/')}>{logValue.email}</Nav.Link>}
             </Nav>
             <Form className="d-flex">
               <Form.Control

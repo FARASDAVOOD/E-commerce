@@ -1,21 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { mainContext } from "../../pages/context/ContextApi";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Cart = () => {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/product")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error('Error fetching products:', error));
+  }, []);
+
   const navigate = useNavigate();
   const [registerValue, setRegisterValue, Users, setUsers, cart, setCart, logValue, setLogValue, addToCart] = useContext(mainContext);
 
+  const userId = Users.id;
+
+  const updateCartInBackend = (updatedCart) => {
+    axios.patch(`http://localhost:3000/user/${userId}`, { cart: updatedCart })
+      .then(response => {
+        console.log('Cart updated in backend:', response.data);
+      })
+      .catch(error => {
+        console.error('Error updating cart in backend:', error);
+      });
+  };
+
   const handleQuantityChange = (id, increment) => {
-    setCart(prevCart =>
-      prevCart.map(item =>
-        item.id === id ? { ...item, quantity: Math.max(1, item.quantity + increment) } : item
-      )
+    const updatedCart = cart.map(item =>
+      item.id === id ? { ...item, quantity: Math.max(1, item.quantity + increment) } : item
     );
+    setCart(updatedCart);
+    updateCartInBackend(updatedCart);
   };
 
   const handleRemoveItem = id => {
-    setCart(prevCart => prevCart.filter(item => item.id !== id));
+    const updatedCart = cart.filter(item => item.id !== id);
+    setCart(updatedCart);
+    updateCartInBackend(updatedCart);
   };
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { mainContext } from '../../pages/context/ContextApi';
+import axios from 'axios';
 
 const Payment = () => {
     const navigate = useNavigate();
@@ -10,13 +11,25 @@ const Payment = () => {
     const [expiryMonth, setExpiryMonth] = useState('');
     const [expiryYear, setExpiryYear] = useState('');
 
-    const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue] = useContext(mainContext);
+    const [registerValue, setRegisterValue, Users, setUsers, cart, setCart, logValue, setLogValue] = useContext(mainContext);
+
+    const userId = Users.id;
+
+    const clearCartInBackend = () => {
+        axios.patch(`http://localhost:3000/user/${userId}`, { cart: [] })
+            .then(response => {
+                console.log('Cart cleared in backend:', response.data);
+                setCart([]);
+            })
+            .catch(error => {
+                console.error('Error clearing cart in backend:', error);
+            });
+    };
 
     const handlePay = () => {
-       
-        if (cardHolder.trim() !== '' && cardNumber.length >= 14 && security.length === 3 && expiryMonth !== '' && expiryYear !== '') {
+        if (isFormValid()) {
+            clearCartInBackend();
             navigate('/paymentsuccess');
-            setCart([])
         } else {
             alert("Please fill all fields properly.");
         }
@@ -127,7 +140,6 @@ const Payment = () => {
                     <button 
                         onClick={handlePay}
                         className={`submit-button px-4 py-3 rounded-full bg-blue-300 text-blue-900 focus:ring focus:outline-none w-full text-xl font-semibold transition-colors ${!isFormValid() && 'cursor-not-allowed'}`}
-                        
                     >
                         Pay now
                     </button>

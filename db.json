@@ -1,32 +1,252 @@
 {
   "user": [
     {
-      "id": "76a5",
+      "discount": 39,
+      "rating": 4,
+      "id": "d6f0",
       "name": "davood",
       "email": "davood171@gmail.com",
-      "password": "faras171"
+      "password": "faras171",
+      "cart": []
     },
     {
-      "id": "ddaf",
-      "name": "faris",
+      "id": "8bf0",
+      "name": "ytfytf",
+      "email": "farasdavood171@gmail.com",
+      "password": "faras171",
+      "cart": [
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "2",
+          "name": "Protection Net",
+          "price": 194,
+          "image": "https://bornbabies.com/cdn/shop/files/01_37560684-ee4b-4f6f-8280-76acf825a59c.jpg?v=1711971516&width=713",
+          "quantity": 1,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "3",
+          "name": "  Shorts Set ",
+          "price": 161,
+          "image": "https://bornbabies.com/cdn/shop/files/1_74f8a9bf-251c-4652-9bec-b8449fbd54be.jpg?v=1709968229&width=713",
+          "quantity": 2,
+          "category": "cloth"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "1",
+          "name": "Towel Cum Blanket",
+          "price": 154,
+          "image": "https://bornbabies.com/cdn/shop/files/2_90463cba-aa3f-461e-8524-622530e7c7ea.jpg?v=1714214501&width=990",
+          "quantity": 15,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "6",
+          "name": "Knot Frock-Multicolor",
+          "price": 178,
+          "image": "https://bornbabies.com/cdn/shop/files/1_34e66d8c-5fa0-4d02-b050-aeceb3c81869.jpg?v=1712051422&width=713",
+          "quantity": 1,
+          "category": "cloth"
+        }
+      ]
+    },
+    {
+      "id": "d354",
+      "name": "Faras",
       "email": "farasdavodood171@gmail.com",
-      "password": "faras171"
+      "password": "faras171",
+      "cart": []
     },
     {
-      "id": "ed58",
-      "name": "faras",
-      "email": "farasdavood@gmail.com",
-      "password": "faras171"
+      "id": "6f80",
+      "name": "farasdavoo171@gmail.com",
+      "email": "farasdavoo171@gmail.com",
+      "password": "faras171",
+      "cart": [
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "2",
+          "name": "Protection Net",
+          "price": 194,
+          "image": "https://bornbabies.com/cdn/shop/files/01_37560684-ee4b-4f6f-8280-76acf825a59c.jpg?v=1711971516&width=713",
+          "quantity": 1,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "1",
+          "name": "Towel Cum Blanket",
+          "price": 154,
+          "image": "https://bornbabies.com/cdn/shop/files/2_90463cba-aa3f-461e-8524-622530e7c7ea.jpg?v=1714214501&width=990",
+          "quantity": 1,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "3",
+          "name": "  Shorts Set ",
+          "price": 161,
+          "image": "https://bornbabies.com/cdn/shop/files/1_74f8a9bf-251c-4652-9bec-b8449fbd54be.jpg?v=1709968229&width=713",
+          "quantity": 4,
+          "category": "cloth"
+        }
+      ]
     },
     {
-      "id": "fb35",
-      "name": "sharoor",
-      "email": "farasfadoddf171@gmail.com",
-      "password": "faras171"
+      "id": "118f",
+      "name": "faras111@gmail.com",
+      "email": "faras111@gmail.com",
+      "password": "faras171",
+      "cart": [
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "6",
+          "name": "Knot Frock-Multicolor",
+          "price": 178,
+          "image": "https://bornbabies.com/cdn/shop/files/1_34e66d8c-5fa0-4d02-b050-aeceb3c81869.jpg?v=1712051422&width=713",
+          "quantity": 2,
+          "category": "cloth"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "5",
+          "name": "Cum Sleeping Bag ",
+          "price": 199,
+          "image": "https://bornbabies.com/cdn/shop/files/1_22be7ea7-6d0b-49db-acc2-a660c72772d1.jpg?v=1706342622&width=713",
+          "quantity": 6,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "3",
+          "name": "  Shorts Set ",
+          "price": 161,
+          "image": "https://bornbabies.com/cdn/shop/files/1_74f8a9bf-251c-4652-9bec-b8449fbd54be.jpg?v=1709968229&width=713",
+          "quantity": 3,
+          "category": "cloth"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "2",
+          "name": "Protection Net",
+          "price": 194,
+          "image": "https://bornbabies.com/cdn/shop/files/01_37560684-ee4b-4f6f-8280-76acf825a59c.jpg?v=1711971516&width=713",
+          "quantity": 3,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "1",
+          "name": "Towel Cum Blanket",
+          "price": 154,
+          "image": "https://bornbabies.com/cdn/shop/files/2_90463cba-aa3f-461e-8524-622530e7c7ea.jpg?v=1714214501&width=990",
+          "quantity": 4,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "4",
+          "name": "Silicone Nipple  ",
+          "price": 145,
+          "image": "https://bornbabies.com/cdn/shop/files/1_3a401de3-f3b0-4201-a076-0eb6d5d877d9.jpg?v=1711968447&width=713",
+          "quantity": 1,
+          "category": "product"
+        }
+      ]
+    },
+    {
+      "id": "7762",
+      "name": "farisda@gmail.com",
+      "email": "farisda@gmail.com",
+      "password": "faras171",
+      "cart": [
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "2",
+          "name": "Protection Net",
+          "price": 194,
+          "image": "https://bornbabies.com/cdn/shop/files/01_37560684-ee4b-4f6f-8280-76acf825a59c.jpg?v=1711971516&width=713",
+          "quantity": 2,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "1",
+          "name": "Towel Cum Blanket",
+          "price": 154,
+          "image": "https://bornbabies.com/cdn/shop/files/2_90463cba-aa3f-461e-8524-622530e7c7ea.jpg?v=1714214501&width=990",
+          "quantity": 2,
+          "category": "bed"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "8",
+          "name": "Baby Wash",
+          "price": 125,
+          "image": "https://bornbabies.com/cdn/shop/files/01_f4dd3d24-779e-4ccb-8ef4-6367cc67aa6f.jpg?v=1709989375&width=1646",
+          "quantity": 1,
+          "category": "cream"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "7",
+          "name": "Tear Free Shampoo",
+          "price": 198,
+          "image": "https://bornbabies.com/cdn/shop/files/01_14532b6f-dd0c-4061-a902-535aa595ce12.jpg?v=1709989748&width=1646",
+          "quantity": 1,
+          "category": "cream"
+        },
+        {
+          "discount": 39,
+          "rating": 4,
+          "id": "9",
+          "name": "Moisturizes",
+          "price": 110,
+          "image": "https://bornbabies.com/cdn/shop/files/01_e3b844bf-a846-4535-bff1-b20e4c28f62c.jpg?v=1710155416&width=1646",
+          "quantity": 2,
+          "category": "cream"
+        }
+      ]
+    },
+    {
+      "id": "2ac2",
+      "name": "davood",
+      "email": "davood171@gmail.com",
+      "password": "faras171",
+      "cart": []
+    },
+    {
+      "id": "3b38",
+      "name": "Faras",
+      "email": "farasdavodood171@gmail.com",
+      "password": "faras171",
+      "cart": []
     }
   ],
   "product": [
     {
+      "discount": 39,
+      "rating": 4,
       "id": "1",
       "name": "Towel Cum Blanket",
       "price": 154,
@@ -35,6 +255,8 @@
       "category": "bed"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "2",
       "name": "Protection Net",
       "price": 194,
@@ -43,6 +265,8 @@
       "category": "bed"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "3",
       "name": "  Shorts Set ",
       "price": 161,
@@ -51,6 +275,8 @@
       "category": "cloth"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "4",
       "name": "Silicone Nipple  ",
       "price": 145,
@@ -59,6 +285,8 @@
       "category": "product"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "5",
       "name": "Cum Sleeping Bag ",
       "price": 199,
@@ -67,6 +295,8 @@
       "category": "bed"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "6",
       "name": "Knot Frock-Multicolor",
       "price": 178,
@@ -75,6 +305,8 @@
       "category": "cloth"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "7",
       "name": "Tear Free Shampoo",
       "price": 198,
@@ -83,6 +315,8 @@
       "category": "cream"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "8",
       "name": "Baby Wash",
       "price": 125,
@@ -91,6 +325,8 @@
       "category": "cream"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "9",
       "name": "Moisturizes",
       "price": 110,
@@ -99,14 +335,18 @@
       "category": "cream"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "10",
-      "name": "Diaper Anti Rash Cream",
+      "name": " Rash Cream",
       "price": 101,
       "image": "https://bornbabies.com/cdn/shop/files/02_45baabf9-6909-406d-9770-ff6b72a82dcd.jpg?v=1709988380&width=1646",
       "quantity": 1,
       "category": "cream"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "11",
       "name": "HalfSleeve Top",
       "price": 198,
@@ -115,6 +355,8 @@
       "category": "cloth"
     },
     {
+      "discount": 39,
+      "rating": 4,
       "id": "12",
       "name": "Printed Sleeveless",
       "price": 198,

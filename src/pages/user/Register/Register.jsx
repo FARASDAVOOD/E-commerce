@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useInsertionEffect, useLayoutEffect, useMemo, useState } from 'react';
 import Registerbg from "../../../assets/baby-register.jpeg"
 import "./Register.css"
-// import { mainContext } from '../../context/ContextApi';
+import { mainContext } from '../../context/ContextApi';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { memo } from 'react';
 import axios from 'axios';
@@ -17,13 +17,14 @@ const Register = () => {
 
   const navigate=useNavigate();
 
-  // const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue,search,setSearch,findData,setFindData] = useContext(mainContext);
+  const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue,search,setSearch,findData,setFindData] = useContext(mainContext);
 
-  const [registerValue,setRegisterValue]=useState({
-    name:'',
-    email:'',
-    password:''
-  });
+  // const [registerValue,setRegisterValue]=useState({
+  //   name:'',
+  //   email:'',
+  //   password:'',
+  //   cart:[]
+  // });
 
 
   function handleClick(e) {
@@ -40,7 +41,7 @@ const Register = () => {
     if (registerValue.email.match(mailformat)) {
       if (registerValue.password.length >= 7) {
         axios.post("http://localhost:3000/user",registerValue);
-        alert("success")
+       
         // Users.push(registerValue);
         setRegisterValue({
           name: '',
@@ -118,4 +119,4 @@ const Register = () => {
   )
 }
 
-export default memo(Register)  
+export default memo(Register);  

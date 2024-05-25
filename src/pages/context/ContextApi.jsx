@@ -7,7 +7,8 @@ export const ContextApi = ({children}) => {
   const [registerValue,setRegisterValue]=useState({
     name:'',
     email:'',
-    password:''
+    password:'',
+    cart:[]
   });
   const [logValue, setLogValue] = useState({
     email: '',

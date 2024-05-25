@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Loginbg from "../../../assets/baby_login.jpg";
 import "./Login.css";
 import Googlelogo from "../../../assets/google_logo.png";
 import { NavLink, useNavigate } from 'react-router-dom';
-// import { mainContext } from '../../context/ContextApi'
+import { mainContext } from '../../context/ContextApi'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+  const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue,search,setSearch,findData,setFindData]=useContext(mainContext)
+
+   
+
   const navigate = useNavigate();
-  const [logValue, setLogValue] = useState({
-    email: '',
-    password: ''
-  });
+ 
 
   const [user, setUser] = useState();
 
@@ -20,16 +21,21 @@ const Login = () => {
     try {
       const response = await fetch('http://localhost:3000/user');
       const users = await response.json();
-    console.log(users);
+   
       const foundUser = users.find((user) => user.email === logValue.email);
-   console.log(foundUser);
+      
       if (logValue.email === "farasdavood171@gmail.com" && logValue.password === "Faras_171") {
         navigate("/admin");
         toast.success("Admin login successful");
       } else if (foundUser) {
         if (foundUser.password === logValue.password) {
           navigate('/');
+       setUsers(foundUser);
+
+       
+          
           toast.success("Login successfully");
+         
         } else {
           toast.error("Invalid password");
         }

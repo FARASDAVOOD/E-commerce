@@ -1,16 +1,73 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 
 import { mainContext } from '../../pages/context/ContextApi';
 import Navbar1 from '../navbar/Navbar1';
+import axios from 'axios';
 
 const Search= () => {
+
   const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue,search,setSearch,findData,setFindData]=useContext(mainContext);
+
+  const userId = Users.id;
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/product")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error('Error fetching products:', error));
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      axios.get(`http://localhost:3000/user/${userId}`)
+        .then(response => {
+          setCart(response.data.cart || []);
+        })
+        .catch(error => {
+          console.error('Error fetching user cart:', error);
+        });
+    }
+  }, [userId]);
+
+
+
+ 
   const handleCart=(id)=>{
-    const findProduct = producs.find((value)=>value.id==id)
-    setCart([...cart,findProduct]);
-    
-  }
+    const findProduct = products.find((value) => value.id === id);
+
+    setCart((prevCart) => {
+      const existingProduct = prevCart.find((item) => item.id === id);
+      if (existingProduct) {
+        return prevCart.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        return [...prevCart, { ...findProduct, quantity: 1 }];
+      }
+    });
+
+    const updatedCart = cart.map((item) => {
+      if (item.id === id) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+
+    const updatedUser = {
+      cart: updatedCart.length > 0 ? updatedCart : [...cart, { ...findProduct, quantity: 1 }]
+    };
+
+    axios.patch(`http://localhost:3000/user/${userId}`, updatedUser)
+      .then(response => {
+        console.log('User cart updated:', response.data);
+      })
+      .catch(error => {
+        console.error('Error updating user cart:', error);
+      });
+  };
   console.log(cart,"its cart");
   return (
     <>
