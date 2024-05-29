@@ -5,6 +5,9 @@ import { mainContext } from '../../context/ContextApi';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { memo } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -27,36 +30,45 @@ const Register = () => {
   // });
 
 
-  function handleClick(e) {
 
     
 
 
-
-    e.preventDefault();
-
-
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    function handleClick(e) {
+      e.preventDefault();
     
-    if (registerValue.email.match(mailformat)) {
-      if (registerValue.password.length >= 7) {
-        axios.post("http://localhost:3000/user",registerValue);
-       
-        // Users.push(registerValue);
-        setRegisterValue({
-          name: '',
-          email: '',
-          password: ''
-        });
-        navigate('/login')
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    
+      if (registerValue.email.match(mailformat)) {
+        if (registerValue.password.length >= 7) {
+          // Check if the email is already registered
+          axios.get(`http://localhost:3000/user?email=${registerValue.email}`)
+            .then(response => {
+              if (response.data.length === 0) {
+                // Email is not registered, proceed with registration
+                axios.post("http://localhost:3000/user", registerValue);
+                setRegisterValue({
+                  name: '',
+                  email: '',
+                  password: ''
+                });
+                navigate('/login');
+              } else {
+                // Email is already registered
+                toast.error('This email is already in use');
+              }
+            })
+            .catch(error => {
+              console.error('Error checking email:', error);
+            });
+        } else {
+          toast.error("Password must be more than eight characters");
+        }
       } else {
-        alert("Password must be more that eight character")
+        toast.error('Please enter a valid email');
       }
-    } else {
-      alert('Please enter the valid email')
     }
-
-  }
+    
  
 
 
@@ -112,6 +124,17 @@ const Register = () => {
 
 
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
     </div>
     </>

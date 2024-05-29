@@ -1,8 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { mainContext } from '../../pages/context/ContextApi';
+import { useNavigate } from 'react-router-dom';
+
 
 const CardProductHome = () => {
+    const navigate=useNavigate();
   const [
     registerValue,
     setRegisterValue,
@@ -24,6 +27,9 @@ const CardProductHome = () => {
   const userId = Users.id;
 
   useEffect(() => {
+
+    
+
     fetch("http://localhost:3000/product")
       .then((res) => res.json())
       .then((data) => setProducts(data))
@@ -44,6 +50,7 @@ const CardProductHome = () => {
   }, [userId]);
 
   const handleCart = (id) => {
+   
     const findProduct = products.find((value) => value.id === id);
 
     setCart((prevCart) => {
@@ -83,7 +90,7 @@ const CardProductHome = () => {
         {products.map((product) => (
           <div key={product.id} className="relative flex flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <a className="relative mx-3 mt-3 flex h-60 items-center justify-center overflow-hidden rounded-xl" href="#">
-              <img className="object-contain h-full" src={product.image} alt="product image" />
+                <img className="object-contain h-full" src={product.image} alt="product image"  onClick={()=>navigate(`/detailspage/${product.id}`)} />
               <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
                 {product.discount}% OFF
               </span>

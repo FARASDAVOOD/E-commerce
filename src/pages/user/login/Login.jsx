@@ -1,41 +1,34 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Loginbg from "../../../assets/baby_login.jpg";
 import "./Login.css";
 import Googlelogo from "../../../assets/google_logo.png";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { mainContext } from '../../context/ContextApi'
+import { mainContext } from '../../context/ContextApi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-  const [registerValue,setRegisterValue,Users,setUsers,cart,setCart,logValue,setLogValue,search,setSearch,findData,setFindData]=useContext(mainContext)
-
-   
+  const [registerValue, setRegisterValue, Users, setUsers, cart, setCart, logValue, setLogValue, search, setSearch, findData, setFindData] = useContext(mainContext);
 
   const navigate = useNavigate();
- 
-
-  const [user, setUser] = useState();
 
   const handleClick = async () => {
     try {
       const response = await fetch('http://localhost:3000/user');
       const users = await response.json();
-   
+
       const foundUser = users.find((user) => user.email === logValue.email);
-      
+
       if (logValue.email === "farasdavood171@gmail.com" && logValue.password === "Faras_171") {
         navigate("/admin");
         toast.success("Admin login successful");
       } else if (foundUser) {
-        if (foundUser.password === logValue.password) {
+        if (foundUser.block) {
+          toast.error("Your ID is blocked");
+        } else if (foundUser.password === logValue.password) {
           navigate('/');
-       setUsers(foundUser);
-
-       
-          
+          setUsers(foundUser);
           toast.success("Login successfully");
-         
         } else {
           toast.error("Invalid password");
         }
@@ -50,7 +43,7 @@ const Login = () => {
 
   return (
     <>
-      <div className='w-full h-screen flex items-start Container container-fluid '>
+      <div className='w-full h-screen flex items-start Container container-fluid'>
         <div className='relative w-1/2 h-full flex flex-col box'>
           <img src={Loginbg} alt="" className='h-full w-full object-cover' />
         </div>
@@ -119,7 +112,17 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

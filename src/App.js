@@ -17,7 +17,14 @@ import Cart from './components/Cart/Cart';
 import Payment from './components/Paymet/Paymet';
 import PaymentSuccess from './components/Paymentsuccess/PaymentSuccess';
 import Search from './components/Search/Search';
-import Admin from './pages/admin/Admin';
+
+import Detailspage from './components/Detailspage/Detailspage';
+import AdminNav from './pages/admin/adminNav/AdminNav';
+import Adminhome from './pages/admin/adminhome/AdminHome';
+import Propage from './pages/admin/Propage';
+import Userpage from './pages/admin/UserPages/UserPages';
+import ProductEdit from './pages/admin/ProductEdit';
+
 
 
 
@@ -49,10 +56,13 @@ function App() {
          <Route path='/payment' element={<Payment/>}/>
          <Route path='/paymentsuccess' element={<PaymentSuccess/>}/>
          <Route path='/search' element={<Search/>}/>
-         <Route path='/admin' element={<Admin/>}/> 
-         
-
-
+         <Route path='/admin' element={<Adminhome/>}/> 
+         <Route path='/detailspage/:userid' element={<Detailspage/>}></Route> 
+          <Route path='/admin' element={<Adminhome/>}/>
+          <Route path='admin/propage' element={<Propage/>}></Route>
+                    <Route path='admin/userpage' element={<Userpage/>}></Route>
+                    <Route path='admin/propage/productedit/:userid' element={<ProductEdit />}></Route>
+        
          </Routes>  
 
    

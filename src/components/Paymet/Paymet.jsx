@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { mainContext } from '../../pages/context/ContextApi';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Payment = () => {
     const navigate = useNavigate();
     const [cardHolder, setCardHolder] = useState('');
@@ -16,22 +17,40 @@ const Payment = () => {
     const userId = Users.id;
 
     const clearCartInBackend = () => {
-        axios.patch(`http://localhost:3000/user/${userId}`, { cart: [] })
-            .then(response => {
-                console.log('Cart cleared in backend:', response.data);
-                setCart([]);
-            })
-            .catch(error => {
-                console.error('Error clearing cart in backend:', error);
-            });
+        if (userId) {
+            axios.get(`http://localhost:3000/user/${userId}`)
+                .then(response => {
+                    const userData = response.data;
+                    const currentBought = userData.bought || [];
+                    const updatedBought = [...currentBought, ...cart];
+
+                    axios.patch(`http://localhost:3000/user/${userId}`, { bought: updatedBought })
+                        .then(() => {
+                            axios.patch(`http://localhost:3000/user/${userId}`, { cart: [] })
+                                .then(response => {
+                                    console.log('Cart cleared in backend:', response.data);
+                                    setCart([]);
+                                    navigate('/paymentsuccess');
+                                })
+                                .catch(error => {
+                                    console.error('Error clearing cart in backend:', error);
+                                });
+                        })
+                        .catch(error => {
+                            console.error('Error updating bought items in backend:', error);
+                        });
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        }
     };
 
     const handlePay = () => {
         if (isFormValid()) {
             clearCartInBackend();
-            navigate('/paymentsuccess');
         } else {
-            alert("Please fill all fields properly.");
+            toast.error("Please fill all fields properly.");
         }
     };
 
@@ -46,15 +65,6 @@ const Payment = () => {
                     <div className="relative">
                         <img className="w-full h-auto" src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-front.png" alt="front credit card" />
                         <div className="front bg-transparent text-lg w-full text-white px-12 absolute left-0 bottom-12">
-                            {/* <p className="number mb-5 sm:text-xl">{cardNumber !== '' ? cardNumber : '0000 0000 0000 0000'}</p> */}
-                            <div className="flex flex-row justify-between">
-                                {/* <p>{cardHolder !== '' ? cardHolder : 'Card holder'}</p> */}
-                                <div className="">
-                                    {/* <span>{expiryMonth !== '' ? expiryMonth : 'MM'}</span>
-                                    <span>/</span>
-                                    <span>{expiryYear !== '' ? expiryYear : 'YY'}</span> */}
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <ul className="flex">
@@ -145,6 +155,17 @@ const Payment = () => {
                     </button>
                 </footer>
             </div>
+            <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
         </div>
     );
 };
